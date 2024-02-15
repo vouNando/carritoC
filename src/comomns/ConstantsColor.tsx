@@ -1,5 +1,6 @@
 export const PRIMARY_COLOR='#4F6F52'
 export const PRIMARY_COLOR_DARK='#86A789'
 export const INPUT_COLOR='#D2E3C8'
-export const BUTTON_COLOR='739072'
-export const OJO_COLOR='707070'
+export const BUTTON_COLOR='black'
+export const OJO_COLOR='#707070'
+export const ERROR_COLOR='#750E21'

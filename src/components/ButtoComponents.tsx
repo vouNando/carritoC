@@ -3,9 +3,8 @@ import { StyleSheet, Text, TouchableOpacity } from 'react-native'
 import { BUTTON_COLOR } from '../comomns/ConstantsColor'
 
 interface ButtonProps{
-    title:string
-    
-    onPress: () => void
+    title:string;
+    onPress: () => void;
 }
 export const ButtoComponents = ({title,onPress}:ButtonProps) => {
   return (

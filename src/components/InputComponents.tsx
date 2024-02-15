@@ -1,6 +1,6 @@
 import React from 'react'
-import { StyleSheet, TextInput, View } from 'react-native'
-import { INPUT_COLOR, OJO_COLOR } from '../comomns/ConstantsColor'
+import { StyleSheet, Text, TextInput, View } from 'react-native'
+import { ERROR_COLOR, INPUT_COLOR, OJO_COLOR } from '../comomns/ConstantsColor'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 interface InputProps{
@@ -8,11 +8,12 @@ interface InputProps{
     name:string
     isPassword?: boolean
     hasIcon?: boolean
+    hasError: boolean
     //metodo que captura el valor del input
     onChangeText:(key: string, value: string) => void
     acctionIcon?:() => void
 }
-export const InputComponents = ({placeholder, name, onChangeText, isPassword=false, hasIcon=false, acctionIcon=()=>{}}:InputProps) => {
+export const InputComponents = ({placeholder, name, onChangeText, isPassword=false, hasIcon=false, acctionIcon=()=>{}, hasError}:InputProps) => {
   return (
     <View>
         {
@@ -24,9 +25,17 @@ export const InputComponents = ({placeholder, name, onChangeText, isPassword=fal
     <TextInput 
     placeholder={placeholder}
     keyboardType={'default'}
-    style={style.inputText}
+    style={(hasError)
+        ?{...style.inputText, ...style.error}
+        :{...style.inputText}}
     onChangeText={(value: string) =>onChangeText(name, value)}
     secureTextEntry={isPassword}
+
+    {
+        ...(hasError)
+        ?<Text style={style.errorText}>El campo es obligatorio</Text>
+        :null
+    }
 
 
     />  
@@ -53,5 +62,16 @@ const style= StyleSheet.create({
          right:20,
          top:20,
          zIndex:1
+    },
+    error:{
+        borderColor:ERROR_COLOR,
+        borderStyle:'solid',
+        borderWidth:1
+
+    },
+    errorText:{
+        color:ERROR_COLOR,
+        fontSize:12,
+        fontWeight:'bold'
     }
 })
